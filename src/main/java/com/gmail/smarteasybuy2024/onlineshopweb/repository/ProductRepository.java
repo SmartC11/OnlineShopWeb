@@ -40,4 +40,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             String productName,
             String specifications,
             Pageable pageable);
+
+    Page<Product> findAllByOrderByPriceAsc(Pageable pageable);
+
 }
