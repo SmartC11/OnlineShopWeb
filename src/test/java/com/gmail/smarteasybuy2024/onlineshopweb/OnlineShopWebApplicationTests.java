@@ -1,4 +1,4 @@
-package com.gmail.chengzijian68.onlineshopweb;
+package com.gmail.smarteasybuy2024.onlineshopweb;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
