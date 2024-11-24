@@ -151,7 +151,7 @@
                 <version>3.8.1</version>
                 <configuration>
                     <fork>true</fork>
-                    <executable>Library/Java/JavaVirtualMachines/jdk-22.jdk/Contents/Home/bin/javac</executable>
+                    <executable>Library/Java/JavaVirtualMachines/jdk-22.jdk/Contents/Home/bin/javac.exec</executable>
                 </configuration>
             </plugin>
 

@@ -1,0 +1,138 @@
+<!--    <div class="container text-center my-3">-->
+<!--        <h4>PERSONALLY RECOMMENDED</h4>-->
+<!--    </div>-->
+<!--    <div class="container mt-5">-->
+<!--        <form method="get" action="/perfume/popular">-->
+<!--            <div class="row">-->
+<!--                <div class="col-sm-12">-->
+<!--                    <div id="perfumeCarousel" class="carousel slide" data-ride="carousel">-->
+<!--                        <div class="carousel-inner">-->
+<!--                            <div class="carousel-item active">-->
+<!--                                <div class="container">-->
+<!--                                    <div class="row" th:fragment="list">-->
+<!--                                        <th:block th:replace="fragments/perfumes-fragments :: perfume-item(${perfumes[0]})"/>-->
+<!--                                        <th:block th:replace="fragments/perfumes-fragments :: perfume-item(${perfumes[1]})"/>-->
+<!--                                        <th:block th:replace="fragments/perfumes-fragments :: perfume-item(${perfumes[2]})"/>-->
+<!--                                        <th:block th:replace="fragments/perfumes-fragments :: perfume-item(${perfumes[3]})"/>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="carousel-item">-->
+<!--                                <div class="container">-->
+<!--                                    <div class="row" th:fragment="list">-->
+<!--                                        <th:block th:replace="fragments/perfumes-fragments :: perfume-item(${perfumes[4]})"/>-->
+<!--                                        <th:block th:replace="fragments/perfumes-fragments :: perfume-item(${perfumes[5]})"/>-->
+<!--                                        <th:block th:replace="fragments/perfumes-fragments :: perfume-item(${perfumes[6]})"/>-->
+<!--                                        <th:block th:replace="fragments/perfumes-fragments :: perfume-item(${perfumes[7]})"/>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="carousel-item">-->
+<!--                                <div class="container">-->
+<!--                                    <div class="row" th:fragment="list">-->
+<!--                                        <th:block th:replace="fragments/perfumes-fragments :: perfume-item(${perfumes[8]})"/>-->
+<!--                                        <th:block th:replace="fragments/perfumes-fragments :: perfume-item(${perfumes[9]})"/>-->
+<!--                                        <th:block th:replace="fragments/perfumes-fragments :: perfume-item(${perfumes[10]})"/>-->
+<!--                                        <th:block th:replace="fragments/perfumes-fragments :: perfume-item(${perfumes[11]})"/>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <th:block th:replace="fragments/common-fragments :: carousel-indicators('#perfumeCarousel')"/>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </form>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; 个性化推荐 &ndash;&gt;-->
+<!--    <div class="container text-center my-3">-->
+<!--        <h4>PERSONALLY RECOMMENDED</h4>-->
+<!--    </div>-->
+<!--    <div class="container mt-5">-->
+<!--        <form method="get" action="/product/popular">-->
+<!--            <div class="row">-->
+<!--                <div class="col-sm-12">-->
+<!--                    <div id="recommendedCarousel" class="carousel slide" data-ride="carousel">-->
+<!--                        <div class="carousel-inner">-->
+<!--                            <div class="carousel-item active">-->
+<!--                                <div class="container">-->
+<!--                                    <div class="row" th:fragment="list">-->
+<!--                                        <th:block th:replace="fragments/products-fragments :: product-item(${products[0]})"/>-->
+<!--                                        <th:block th:replace="fragments/products-fragments :: product-item(${products[1]})"/>-->
+<!--                                        <th:block th:replace="fragments/products-fragments :: product-item(${products[2]})"/>-->
+<!--                                        <th:block th:replace="fragments/products-fragments :: product-item(${products[3]})"/>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <th:block th:replace="fragments/common-fragments :: carousel-indicators('#recommendedCarousel')"/>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </form>-->
+<!--    </div>-->
+
+
+
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/common-fragments :: head"></head>
+<body>
+<div th:insert="~{fragments/common-fragments :: scripts}"></div>
+<div th:replace="fragments/common-fragments :: navbar"></div>
+<div id="container">
+    <!-- 轮播图 -->
+    <div id="carouselExampleControls" class="carousel slide carousel-fade" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <a th:href="@{/product/8}">
+                    <!-- 调整图片比例 -->
+                    <img class="d-block mx-auto" style="width: 60%; max-height: 400px;"
+                         src="https://i.ibb.co/CVtsbV8/iphone-16-pro.jpg" alt="iPhone 16 Pro">
+                </a>
+            </div>
+            <div class="carousel-item">
+                <a th:href="@{/product/14}">
+                    <!-- 调整图片比例 -->
+                    <img class="d-block mx-auto" style="width: 60%; max-height: 400px;"
+                         src="https://i.ibb.co/DYwjvvZ/ipad-air-11inch.jpg" alt="iPad Air (11inch)">
+                </a>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true" style="background-color: #000;"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true" style="background-color: #000;"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+    <!-- 推荐品类 -->
+    <div class="container text-center my-3 mt-5">
+        <h3>品类</h3>
+        <div id="categoryCarousel" class="carousel slide w-100" data-ride="carousel">
+            <div class="carousel-inner w-100" role="listbox">
+                <div class="carousel-item row active">
+                    <th:block th:replace="fragments/products-fragments :: category-item(category='Mac', src='https://i.ibb.co/StNWMG9/store-card-13-mac-nav-202410.png')"/>
+                    <th:block th:replace="fragments/products-fragments :: category-item(category='iPhone', src='https://i.ibb.co/DrY1pRs/store-card-13-iphone-nav-202409.png')"/>
+                    <th:block th:replace="fragments/products-fragments :: category-item(category='iPad', src='https://i.ibb.co/LzcfwpG/store-card-13-ipad-nav-202405.png')"/>
+                    <th:block th:replace="fragments/products-fragments :: category-item(category='Apple Watch', src='https://i.ibb.co/f4SJ1r3/store-card-13-watch-nav-202409.png')"/>
+                    <th:block th:replace="fragments/products-fragments :: category-item(category='Apple Vision Pro', src='https://i.ibb.co/qWcq9vq/store-card-13-vision-pro-nav-202401.png')"/>
+                    <th:block th:replace="fragments/products-fragments :: category-item(category='AirPods', src='https://i.ibb.co/JtQFVWp/store-card-13-airpods-nav-202409.png')"/>
+                </div>
+                <div class="carousel-item row">
+                    <th:block th:replace="fragments/products-fragments :: category-item(category='AirTag', src='https://i.ibb.co/2dwgM86/store-card-13-airtags-nav-202108.png')"/>
+                    <th:block th:replace="fragments/products-fragments :: category-item(category='HomePod', src='https://i.ibb.co/BZhX9N0/store-card-13-homepod-nav-202301.png')"/>
+                    <th:block th:replace="fragments/products-fragments :: category-item(category='accessories', src='https://i.ibb.co/ZfYY1Vm/store-card-13-accessories-nav-202409.png')"/>
+                </div>
+            </div>
+            <th:block th:replace="fragments/common-fragments :: carousel-indicators('#categoryCarousel')"/>
+        </div>
+    </div>
+</div>
+<footer th:insert="~{fragments/common-fragments :: footer}"></footer>
+</body>
+</html>

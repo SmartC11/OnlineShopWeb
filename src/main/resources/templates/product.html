@@ -1,0 +1,64 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/common-fragments :: head"></head>
+<body>
+<div th:insert="~{fragments/common-fragments :: scripts}"></div>
+<div th:replace="fragments/common-fragments :: navbar"></div>
+<div id="container" class="bg-light">
+    <div class="container pt-5 pb-5 bg-white shadow-sm">
+        <div class="row">
+            <div class="col-md-5">
+                <img th:src="@{/img/{path} (path = ${product.getFilename()})}" class="rounded mx-auto w-100">
+            </div>
+            <div class="col-md-7">
+                <h2 th:text="${product.getProductName()}"></h2>
+                <p>产品编码: <span th:text="${product.getId()}"></span></p>
+                <p class="product-stock" style="color: #54C0A1">库存充足</p>
+                <div class="row ml-1">
+                    <h6 class="mr-5">
+                        ￥<span th:text="${product.getPrice()}"></span>.00
+                    </h6>
+                    <form action="/cart/add" method="post">
+                        <button type="submit" name="productId" class="btn btn-success mx-3"
+                                th:value="${product.getId()}">
+                            <i class="fas fa-cart-plus mr-2 fa-lg"></i>
+                            添加到购物车
+                        </button>
+                    </form>
+                </div>
+                <br>
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <td>产品名:</td>
+                        <td th:text="${product.getProductName()}"></td>
+                    </tr>
+                    <tr>
+                        <td>品类:</td>
+                        <td th:text="${product.getCategory()}"></td>
+                    </tr>
+                    <tr>
+                        <td>介绍:</td>
+                        <td th:text="${product.getDescription()}"></td>
+                    </tr>
+                    <tr>
+                        <td>发布年份:</td>
+                        <td th:text="${product.getReleaseYear()}"></td>
+                    </tr>
+                    <tr>
+                        <td>库存:</td>
+                        <td th:text="${product.getStock()}"></td>
+                    </tr>
+                    <tr>
+                        <td>规格参数:</td>
+                        <td th:text="${product.getSpecifications()}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<footer th:insert="~{fragments/common-fragments :: footer}"></footer>
+</body>
+</html>

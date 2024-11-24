@@ -1,0 +1,75 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/common-fragments :: head"></head>
+<body>
+<div th:insert="~{fragments/common-fragments :: scripts}"></div>
+<div th:replace="fragments/common-fragments :: navbar"></div>
+<div id="container" class="bg-light">
+  <div class="container d-flex bg-white shadow-sm">
+    <nav id="sidebar">
+      <div class="sidebar-header">
+        <h3>Products</h3>
+      </div>
+      <form action="/product" method="get">
+        <ul class="list-unstyled components">
+          <h5>品类</h5>
+          <li class="active mb-2" id="homeSubmenu">
+            <ul class="list-unstyled">
+              <li th:insert="fragments/products-fragments :: products-categories-checkbox('Mac')"></li>
+              <li th:insert="fragments/products-fragments :: products-categories-checkbox('iPhone')"></li>
+              <li th:insert="fragments/products-fragments :: products-categories-checkbox('iPad')"></li>
+              <li th:insert="fragments/products-fragments :: products-categories-checkbox('Apple Watch')"></li>
+              <li th:insert="fragments/products-fragments :: products-categories-checkbox('Apple Vision Pro')"></li>
+              <li th:insert="fragments/products-fragments :: products-categories-checkbox('AirPods')"></li>
+              <li th:insert="fragments/products-fragments :: products-categories-checkbox('AirTag')"></li>
+              <li th:insert="fragments/products-fragments :: products-categories-checkbox('HomePod')"></li>
+              <li th:insert="fragments/products-fragments :: products-categories-checkbox('accessories')"></li>
+            </ul>
+          </li>
+          <h5>价格</h5>
+          <li class="active mb-2">
+            <ul class="list-unstyled">
+              <li th:insert="fragments/products-fragments :: products-price-checkbox(startingPrice=0, endingPrice=730)"></li>
+              <li th:insert="fragments/products-fragments :: products-price-checkbox(startingPrice=731, endingPrice=2187)"></li>
+              <li th:insert="fragments/products-fragments :: products-price-checkbox(startingPrice=2188, endingPrice=4377)"></li>
+              <li th:insert="fragments/products-fragments :: products-price-checkbox(startingPrice=4378, endingPrice=7293)"></li>
+              <li th:insert="fragments/products-fragments :: products-price-checkbox(startingPrice=7294, endingPrice=14587)"></li>
+              <li th:insert="fragments/products-fragments :: products-price-checkbox(startingPrice=14588, endingPrice=21897)"></li>
+              <li th:insert="fragments/products-fragments :: products-price-checkbox(startingPrice=21898, endingPrice=36500)"></li>
+            </ul>
+          </li>
+        </ul>
+      </form>
+    </nav>
+    <div class="container mb-5">
+      <div class="container-fluid mt-5 ml-1">
+        <form action="/product/search" method="get" style="justify-content: center">
+          <th:block th:replace="~{fragments/common-fragments :: search(
+                        options=(${ {
+                            { value: 'category', text: 'Category' },
+                            { value: 'productName', text: 'Product name' }
+                        } })
+                    )}"/>
+        </form>
+      </div>
+      <div class="mt-4 ml-1">
+        <th:block th:replace="~{fragments/common-fragments :: pagination(class='mx-3')}"/>
+        <div class="container-fluid">
+          <div class="row" th:fragment="list">
+            <th:block th:if="${page.getContent().size() == 0}"
+                      th:insert="~{fragments/common-fragments :: empty-result(text='Products not found')}"/>
+            <th:block th:unless="${page.getContent().size() == 0}" th:each="product : ${page.getContent()}">
+              <th:block th:replace="fragments/products-fragments :: producte-item(${product})"/>
+            </th:block>
+          </div>
+        </div>
+        <th:block th:if="${page.getContent().size() != 0}">
+          <th:block th:replace="~{fragments/common-fragments :: pagination(class='mx-3')}"/>
+        </th:block>
+      </div>
+    </div>
+  </div>
+</div>
+<footer th:insert="~{fragments/common-fragments :: footer}"></footer>
+</body>
+</html>

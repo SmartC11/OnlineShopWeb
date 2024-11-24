@@ -1,0 +1,51 @@
+<!-- 产品卡片 -->
+<div th:fragment="product-item (product)" class="col-lg-3 d-flex align-items-stretch">
+    <div class="card mb-5 shadow" th:if="${product.getFilename()}">
+        <img th:src="@{/img/{path} (path = ${product.getFilename()})}" class="rounded mx-auto w-50">
+        <div class="card-body text-center">
+            <h5 th:text="${product.getProductName()}"></h5>
+            <h6 th:text="${product.getCategory()}"></h6>
+            <h6>￥<span th:text="${product.getPrice()}"></span>.00</h6>
+        </div>
+        <div class="text-center align-items-end mb-3">
+            <a th:href="@{/product/{productId} (productId = ${product.getId()})}" class="btn btn-dark">
+                SHOW MORE
+            </a>
+        </div>
+    </div>
+</div>
+
+<div th:fragment="category-item" class="col-2 float-left">
+    <a th:href="${'/product?categories=' + category}">
+        <img class="img-fluid" th:src="${src}" alt="">
+    </a>
+</div>
+
+<!-- 类别筛选 -->
+<div th:fragment="products-category-checkbox(category)" class="checkbox">
+    <label>
+        <input th:value="${category}" type="checkbox" name="categories" onChange="this.form.submit()"
+               th:checked="${searchRequest.getCategories() != null ? #arrays.contains(searchRequest.getCategories(), category) : false}"/>
+        <span class="cr"><i class="cr-icon fas fa-check"></i></span>
+        <th:block th:text="${category}"></th:block>
+    </label>
+</div>
+
+<!--&lt;!&ndash; 发布年份筛选 &ndash;&gt;-->
+<!--<div th:fragment="products-release-year-checkbox(year)" class="checkbox">-->
+<!--    <label>-->
+<!--        <input th:value="${year}" type="checkbox" name="releaseYear" onChange="this.form.submit()"-->
+<!--               th:checked="${searchRequest.getReleaseYear() != null ? #arrays.contains(searchRequest.getReleaseYear(), year) : false}"/>-->
+<!--        <span class="cr"><i class="cr-icon fas fa-check"></i></span>-->
+<!--        <th:block th:text="${year}"></th:block>-->
+<!--    </label>-->
+<!--</div>-->
+
+<div th:fragment="products-price-checkbox" class="checkbox">
+    <label>
+        <input th:value="${startingPrice}" type="radio" name="price" onChange="this.form.submit()"
+               th:checked="${searchRequest.getPrice() != null ? startingPrice == searchRequest.getPrice() : false}"/>
+        <span class="cr"><i class="cr-icon fas fa-check"></i></span>
+        <th:block th:text="${startingPrice == 0} ? 'any' : ${startingPrice} + ' - ' + ${endingPrice} + ' $'"></th:block>
+    </label>
+</div>
