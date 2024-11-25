@@ -1,0 +1,66 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/common-fragments :: head"></head>
+<body>
+<div th:insert="~{fragments/common-fragments :: scripts}"></div>
+<div th:replace="fragments/common-fragments :: navbar"></div>
+<div id="container" class="bg-light">
+    <div class="py-5">
+        <div class="container py-5 bg-white shadow-sm card-height">
+            <div class="row mx-3">
+                <th:block th:replace="fragments/account-fragments :: account-sidebar"/>
+                <div class="col-md-10">
+                    <th:block th:replace="fragments/common-fragments :: info-title(
+                        text='产品列表',
+                        icon='fas fa-list ml-2 mr-2'
+                    )"/>
+                    <th:block th:replace="fragments/common-fragments :: alert-message"/>
+                    <form class="my-3" action="/admin/products/search" method="get" style="justify-content: center">
+                        <div th:insert="~{fragments/common-fragments :: search(
+                            options=(${ {
+                                { value: 'category', text: '品类' },
+                                { value: 'productName', text: '产品名' }
+                            } })
+                        )}"></div>
+                    </form>
+                    <div class="mt-3" th:insert="~{fragments/common-fragments :: pagination}"></div>
+                    <form method="get" action="/static">
+                        <div class="row" th:fragment="list">
+                            <th:block th:if="${page.getContent().size() == 0}"
+                                      th:insert="~{fragments/common-fragments :: empty-result(text='没有找到合适的产品。')}"/>
+                            <div class="col-lg-3"
+                                 th:unless="${page.getContent().size() == 0}"
+                                 th:each="product : ${page.getContent()}">
+                                <div class="card mb-5 product_list_item_wrapper shadow"
+                                     th:if="${product.getFilename()}"
+                                     style="width: 100%; height: 350px; display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 10px;">
+                                    <div class="product_list_item_image_wrapper"
+                                         style="flex: 1; display: flex; justify-content: center; align-items: center; overflow: hidden; width: 100%;">
+                                        <img th:src="@{/img/{path} (path = ${product.getFilename()})}"
+                                             class="rounded mx-auto w-50 product_list_item_image"
+                                             style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                                    </div>
+                                    <div class="card-body text-center" style="flex-shrink: 0; text-align: center;">
+                                        <h6 th:text="${product.getProductName()}"></h6>
+                                        <h6 th:text="${product.getCategory()}"></h6>
+                                        <h6>￥<span th:text="${product.getPrice()}"></span>.00</h6>
+                                    </div>
+                                    <div class="text-center align-items-end mb-3">
+                                        <a th:href="@{/admin/product/{productId} (productId = ${product.getId()})}"
+                                           class="btn btn-dark">
+                                            <i class="fas fa-edit"></i>
+                                            编辑
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer th:insert="~{fragments/common-fragments :: footer}"></footer>
+</body>
+</html>

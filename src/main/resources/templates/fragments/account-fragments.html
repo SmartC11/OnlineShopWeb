@@ -2,18 +2,18 @@
     <div class="col-md-2">
         <h4>
             <i class="fas fa-user-edit mr-1"></i>
-            Account
+            账号
         </h4>
-        <a class="account-sidebar-link nav-link" href="/user/info">Personal data</a>
-        <a class="account-sidebar-link nav-link" href="/user/reset">Change password</a>
+        <a class="account-sidebar-link nav-link" href="/user/info">个人信息</a>
+        <a class="account-sidebar-link nav-link" href="/user/reset">修改密码</a>
         <th:block sec:authorize="hasAuthority('ADMIN')">
-            <a class="account-sidebar-link nav-link" href="/admin/add/product">Add product</a>
-            <a class="account-sidebar-link nav-link" href="/admin/products">List of products</a>
-            <a class="account-sidebar-link nav-link" href="/admin/orders">List of all orders</a>
-            <a class="account-sidebar-link nav-link" href="/admin/users">List of all users</a>
+            <a class="account-sidebar-link nav-link" href="/admin/add/product">添加产品</a>
+            <a class="account-sidebar-link nav-link" href="/admin/products">查看产品列表</a>
+            <a class="account-sidebar-link nav-link" href="/admin/orders">查看订单列表</a>
+            <a class="account-sidebar-link nav-link" href="/admin/users">查看用户列表</a>
         </th:block>
         <th:block sec:authorize="hasAuthority('USER')">
-            <a class="account-sidebar-link nav-link" href="/order/user/orders">List of orders</a>
+            <a class="account-sidebar-link nav-link" href="/order/user/orders">查看订单列表</a>
         </th:block>
     </div>
 </th:block>
@@ -74,22 +74,22 @@
 <th:block th:fragment="user-info">
     <div class="col-md-4 mb-5">
         <th:block th:replace="fragments/common-fragments :: info-title(
-            text='Personal data',
+            text='个人信息',
             icon='fas fa-address-card mr-2'
         )"/>
         <th:block th:replace="fragments/common-fragments :: alert-message"/>
-        <th:block th:replace="fragments/common-fragments :: data-item(title='Email', text=${user.getEmail()})" />
-        <th:block th:replace="fragments/common-fragments :: data-item(title='First name', text=${user.getFirstName()})" />
-        <th:block th:replace="fragments/common-fragments :: data-item(title='Last name', text=${user.getLastName()})" />
-        <th:block th:replace="fragments/common-fragments :: data-item(title='City', text=${user.getCity()})" />
-        <th:block th:replace="fragments/common-fragments :: data-item(title='Address', text=${user.getAddress()})" />
-        <th:block th:replace="fragments/common-fragments :: data-item(title='Phone number', text=${user.getPhoneNumber()})" />
-        <th:block th:replace="fragments/common-fragments :: data-item(title='Post index', text=${user.getPostIndex()})" />
+        <th:block th:replace="fragments/common-fragments :: data-item(title='邮箱', text=${user.getEmail()})" />
+        <th:block th:replace="fragments/common-fragments :: data-item(title='名字', text=${user.getFirstName()})" />
+        <th:block th:replace="fragments/common-fragments :: data-item(title='姓氏', text=${user.getLastName()})" />
+        <th:block th:replace="fragments/common-fragments :: data-item(title='城市', text=${user.getCity()})" />
+        <th:block th:replace="fragments/common-fragments :: data-item(title='地址', text=${user.getAddress()})" />
+        <th:block th:replace="fragments/common-fragments :: data-item(title='电话号码', text=${user.getPhoneNumber()})" />
+        <th:block th:replace="fragments/common-fragments :: data-item(title='邮编', text=${user.getPostIndex()})" />
         <a th:with="isUserEditOpen=${#request.getRequestURI() == '/user/info/edit'}"
            th:href="@{${isUserEditOpen} ? '/user/info' : '/user/info/edit'}"
            role="button">
             <th:block th:replace="fragments/common-fragments :: icon-button(
-                text=(${isUserEditOpen} ? 'Hide' : 'Edit'),
+                text=(${isUserEditOpen} ? 'Hide' : '编辑'),
                 icon=(${isUserEditOpen} ? 'fas fa-eye-slash mr-2' : 'fas fa-edit mr-2'),
                 buttonClassName='mt-2'
             )"/>

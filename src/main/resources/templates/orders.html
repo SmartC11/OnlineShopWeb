@@ -11,7 +11,7 @@
                 <th:block th:replace="fragments/account-fragments :: account-sidebar"/>
                 <div class="col-md-10">
                     <th:block th:replace="fragments/common-fragments :: info-title(
-                        text='List of all orders',
+                        text='订单列表',
                         icon='fas fa-shopping-bag ml-2 mr-2'
                     )"/>
                     <form class="my-3" method="get" style="justify-content: center"
@@ -22,9 +22,9 @@
                     }">
                         <div th:replace="~{fragments/common-fragments :: search(
                             options=(${ {
-                                { value: 'email', text: 'Email' },
-                                { value: 'firstName', text: 'First Name' },
-                                { value: 'lastName', text: 'Last Name' }
+                                { value: 'email', text: '邮箱' },
+                                { value: 'firstName', text: '名字' },
+                                { value: 'lastName', text: '姓氏' }
                             } })
                         )}"></div>
                     </form>
@@ -34,11 +34,11 @@
                     <table th:unless="${page.getContent().size() == 0}" class="table mt-4 border text-center">
                         <thead class="table-active">
                         <tr>
-                            <th>Order №</th>
-                            <th>Date</th>
-                            <th>Customer</th>
-                            <th>Email</th>
-                            <th>Sum, $</th>
+                            <th>订单号 №</th>
+                            <th>订单时间</th>
+                            <th>顾客</th>
+                            <th>邮箱</th>
+                            <th>金额总计</th>
                             <th></th>
                         </tr>
                         <tbody th:each="order : ${page.getContent()}">
@@ -47,11 +47,11 @@
                             <th th:text="${#temporals.format(order.getDate(), 'yyyy-MM-dd HH:mm')}"></th>
                             <th th:text="${order.getFirstName() + ' ' + order.getLastName()}"></th>
                             <th th:text="${order.getEmail()}"></th>
-                            <th th:text="'$' + ${order.getTotalPrice()} + '0'"></th>
+                            <th th:text="'￥' + ${order.getTotalPrice()} + '0'"></th>
                             <th:block sec:authorize="hasAuthority('ADMIN')">
                                 <th>
                                     <a th:href="@{/admin/order/{orderId} (orderId = ${order.getId()})}">
-                                        Show more
+                                        查看更多
                                     </a>
                                 </th>
                             </th:block>
@@ -65,8 +65,6 @@
                         </tr>
                         </tbody>
                     </table>
-                    <div th:unless="${page.getContent().size() == 0}"
-                         th:insert="~{fragments/common-fragments :: pagination}"></div>
                 </div>
             </div>
         </div>

@@ -29,18 +29,13 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             "WHERE (coalesce(:categories, null) IS NULL OR product.category IN :categories) " +
             "AND (coalesce(:priceStart, null) IS NULL OR product.price BETWEEN :priceStart AND :priceEnd) " +
             "AND (coalesce(:releaseYears, null) IS NULL OR product.releaseYear IN :releaseYears) " +
-            "AND (:productName IS NULL OR LOWER(product.productName) LIKE LOWER(CONCAT('%', :productName, '%'))) " +
-            "AND (:specifications IS NULL OR LOWER(product.specifications) LIKE LOWER(CONCAT('%', :specifications, '%'))) " +
             "ORDER BY product.price ASC")
     Page<Product> getProductsByFilterParams(
             List<String> categories,
             Integer priceStart,
             Integer priceEnd,
             List<Integer> releaseYears,
-            String productName,
-            String specifications,
             Pageable pageable);
 
     Page<Product> findAllByOrderByPriceAsc(Pageable pageable);
-
 }

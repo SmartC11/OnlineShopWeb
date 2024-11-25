@@ -4,27 +4,24 @@
 <body>
 <div th:insert="~{fragments/common-fragments :: scripts}"></div>
 <div th:replace="fragments/common-fragments :: navbar"></div>
-<div id="container" class="bg-light">
-    <div class="py-5">
-        <div class="container py-5 bg-white shadow-sm card-height">
-            <h5>
-                <i class="fas fa-info-circle mr-2"></i>
-                Contacts
-            </h5>
-            <br>
-            <p><b>Mobile:</b> (86) 135-9050-0263<br/>
-                <b>E-mail:</b> smarteasybuy2024@gmail.com</p>
-            <br>
-            <h6>Working time</h6>
-            <p>
-                The online store is open from 08:00 to 20:00 without breaks and weekends. <br/>
-                Online orders are accepted around the clock.
-            </p>
-            <br>
-            <h6>Delivery</h6>
-            <p>Delivery of orders come through courier service.</p>
-        </div>
-
+<div id="container" style="display: flex; justify-content: center; align-items: center; min-height: 100vh; background-color: #f8f9fa;">
+    <div style="background-color: #fff; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); padding: 20px; border-radius: 10px; max-width: 600px; width: 100%;">
+        <h5>
+            <i class="fas fa-info-circle mr-2"></i>
+            联系方式
+        </h5>
+        <br>
+        <p><b>手机:</b> (86) 135-9050-0263<br/>
+            <b>邮箱:</b> 1939366545@qq.com</p>
+        <br>
+        <h6>工作时间</h6>
+        <p>
+            在线商店营业时间为每天08:00至20:00，无休息和周末。<br/>
+            全天24小时接受在线订单。
+        </p>
+        <br>
+        <h6>配送信息</h6>
+        <p>订单通过快递服务进行配送。</p>
     </div>
 </div>
 <footer th:insert="~{fragments/common-fragments :: footer}"></footer>

@@ -1,0 +1,79 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/common-fragments :: head"></head>
+<body>
+<div th:insert="~{fragments/common-fragments :: scripts}"></div>
+<div th:replace="fragments/common-fragments :: navbar"></div>
+<div class="bg-light">
+    <div class="py-5">
+        <div class="container py-5 bg-white shadow-sm card-height">
+            <div class="row mx-3">
+                <th:block th:replace="fragments/account-fragments :: account-sidebar"/>
+                <div class="col-md-9 mb-5">
+                    <th:block th:replace="fragments/common-fragments :: info-title(text='修改产品', icon='fas fa-edit mr-2')"/>
+                    <form method="post" action="/admin/edit/product" enctype="multipart/form-data">
+                        <div class="row mt-5">
+                            <div class="col-md-6">
+                                <th:block th:replace="fragments/account-fragments :: edit-product-input(
+                                    title='产品名',
+                                    name='productName',
+                                    value=(${product.getProductName()}),
+                                    error=(${productNameError})
+                                )"/>
+                                <th:block th:replace="fragments/account-fragments :: edit-product-input(
+                                    title='品类',
+                                    name='category',
+                                    value=(${product.getCategory()}),
+                                    error=(${categoryError})
+                                )"/>
+                                <th:block th:replace="fragments/account-fragments :: edit-product-input(
+                                    title='推出年份',
+                                    name='releaseYear',
+                                    value=(${product.getReleaseYear()}),
+                                    error=(${releaseYearError})
+                                )"/>
+                                <th:block th:replace="fragments/account-fragments :: edit-product-input(
+                                    title='价格',
+                                    name='price',
+                                    value=(${product.getPrice()}),
+                                    error=(${priceError})
+                                )"/>
+                                <th:block th:replace="fragments/account-fragments :: edit-product-input(
+                                    title='库存',
+                                    name='stock',
+                                    value=(${product.getStock()}),
+                                    error=(${stockError})
+                                )"/>
+                                <th:block th:replace="fragments/account-fragments :: edit-product-input(
+                                    title='描述',
+                                    name='description',
+                                    value=(${product.getDescription()}),
+                                    error=(${descriptionError})
+                                )"/>
+                                <th:block th:replace="fragments/account-fragments :: edit-product-input(
+                                    title='规格参数',
+                                    name='specifications',
+                                    value=(${product.getSpecifications()}),
+                                    error=(${specificationsError})
+                                )"/>
+                            </div>
+                            <div class="col-md-6">
+                                <div th:if="${product.getFilename()}">
+                                    <img th:src="@{/img/{path} (path = ${product.getFilename()})}"
+                                         class="rounded mx-auto w-100 mb-2"/>
+                                </div>
+                                <input type="file" name="file"/>
+                            </div>
+                        </div>
+                        <input type="hidden" name="id" th:value="${product.getId()}"/>
+                        <input type="hidden" name="filename" th:value="${product.getFilename()}"/>
+                        <th:block th:replace="fragments/common-fragments :: icon-button(text='编辑', icon='fas fa-edit mr-2')"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer th:insert="~{fragments/common-fragments :: footer}"></footer>
+</body>
+</html>

@@ -1,15 +1,26 @@
 <!-- 产品卡片 -->
-<div th:fragment="product-item (product)" class="col-lg-3 d-flex align-items-stretch">
-    <div class="card mb-5 shadow" th:if="${product.getFilename()}">
-        <img th:src="@{/img/{path} (path = ${product.getFilename()})}" class="rounded mx-auto w-50">
-        <div class="card-body text-center">
+<div th:fragment="product-item(product)" class="col-lg-3 d-flex align-items-stretch">
+    <div class="card mb-5 shadow d-flex flex-column justify-content-between"
+         th:if="${product.getFilename()}"
+         style="height: 100%; padding: 15px;">
+        <!-- 图片部分 -->
+        <div class="d-flex justify-content-center align-items-center"
+             style="flex: 1; overflow: hidden; margin-bottom: 15px;">
+            <img th:src="@{/img/{path} (path = ${product.getFilename()})}"
+                 class="rounded"
+                 style="max-width: 100%; max-height: 100%; object-fit: contain; height: 150px;">
+        </div>
+        <!-- 商品详情部分 -->
+        <div class="card-body text-center" style="flex-shrink: 0;">
             <h5 th:text="${product.getProductName()}"></h5>
             <h6 th:text="${product.getCategory()}"></h6>
             <h6>￥<span th:text="${product.getPrice()}"></span>.00</h6>
         </div>
-        <div class="text-center align-items-end mb-3">
-            <a th:href="@{/product/{productId} (productId = ${product.getId()})}" class="btn btn-dark">
-                SHOW MORE
+        <!-- 查看更多按钮 -->
+        <div class="text-center mt-auto">
+            <a th:href="@{/product/{productId} (productId = ${product.getId()})}"
+               class="btn btn-dark">
+                查看更多
             </a>
         </div>
     </div>
@@ -22,12 +33,12 @@
 </div>
 
 <!-- 类别筛选 -->
-<div th:fragment="products-category-checkbox(category)" class="checkbox">
+<div th:fragment="products-type-checkbox(type)" class="checkbox">
     <label>
-        <input th:value="${category}" type="checkbox" name="categories" onChange="this.form.submit()"
-               th:checked="${searchRequest.getCategories() != null ? #arrays.contains(searchRequest.getCategories(), category) : false}"/>
+        <input th:value="${type}" type="checkbox" name="categories" onChange="this.form.submit()"
+               th:checked="${searchRequest.getCategories() != null ? #arrays.contains(searchRequest.getCategories(), type) : false}"/>
         <span class="cr"><i class="cr-icon fas fa-check"></i></span>
-        <th:block th:text="${category}"></th:block>
+        <th:block th:text="${type}"></th:block>
     </label>
 </div>
 
@@ -46,6 +57,6 @@
         <input th:value="${startingPrice}" type="radio" name="price" onChange="this.form.submit()"
                th:checked="${searchRequest.getPrice() != null ? startingPrice == searchRequest.getPrice() : false}"/>
         <span class="cr"><i class="cr-icon fas fa-check"></i></span>
-        <th:block th:text="${startingPrice == 0} ? 'any' : ${startingPrice} + ' - ' + ${endingPrice} + ' $'"></th:block>
+        <th:block th:text="${startingPrice == 0} ? 'any' : ${startingPrice} + ' - ' + ${endingPrice} + ' ￥'"></th:block>
     </label>
 </div>

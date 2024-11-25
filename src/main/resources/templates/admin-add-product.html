@@ -1,0 +1,78 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/common-fragments :: head"></head>
+<body>
+<div th:insert="~{fragments/common-fragments :: scripts}"></div>
+<div th:replace="fragments/common-fragments :: navbar"></div>
+<div id="container" class="bg-light">
+    <div class="py-5">
+        <div class="container py-5 bg-white shadow-sm card-height">
+            <div class="row mx-3">
+                <th:block th:replace="fragments/account-fragments :: account-sidebar"/>
+                <div class="col-md-9 mb-5">
+                    <th:block th:replace="fragments/common-fragments :: info-title(
+                        text='添加产品',
+                        icon='fas fa-plus-square mr-2'
+                    )"/>
+                    <br/>
+                    <form method="post" action="/admin/add/product" enctype="multipart/form-data">
+                        <div class="form row">
+                            <th:block th:replace="fragments/account-fragments :: add-product-input(
+                                title='产品名',
+                                name='productName',
+                                placeholder='请输入产品名',
+                                value=(${product} ? ${product.productName} : ''),
+                                error=(${productNameError})
+                            )"/>
+                            <th:block th:replace="fragments/account-fragments :: add-product-input(
+                                title='品类',
+                                name='category',
+                                placeholder='请输入所属的品类',
+                                value=(${product} ? ${product.category} : ''),
+                                error=(${categoryError})
+                            )"/>
+                        </div>
+                        <div class="form row mt-3">
+                            <th:block th:replace="fragments/account-fragments :: add-product-input(
+                                title='推出年份',
+                                name='releaseYear',
+                                placeholder='请输入推出年份',
+                                value=(${product} ? ${product.releaseYear} : ''),
+                                error=(${releaseYearError})
+                            )"/>
+                        </div>
+                        <div class="form row mt-3">
+                            <th:block th:replace="fragments/account-fragments :: add-product-input(
+                                title='库存',
+                                name='stock',
+                                placeholder='请输入库存',
+                                value=(${product} ? ${product.stock} : ''),
+                                error=(${stockError})
+                            )"/>
+                        </div>
+                        <div class="form row mt-3">
+                            <th:block th:replace="fragments/account-fragments :: add-product-input(
+                                title='价格',
+                                name='price',
+                                placeholder='请输入价格',
+                                value=(${product} ? ${product.price} : ''),
+                                error=(${priceError})
+                            )"/>
+                            <div class="col" style="margin-top: 35px">
+                                <input type="file" name="file"/>
+                            </div>
+                        </div>
+                        <th:block th:replace="fragments/common-fragments :: icon-button(
+                            text='添加',
+                            buttonClassName='mt-3',
+                            icon='fas fa-plus-square mr-2'
+                        )"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer th:insert="~{fragments/common-fragments :: footer}"></footer>
+</body>
+</html>

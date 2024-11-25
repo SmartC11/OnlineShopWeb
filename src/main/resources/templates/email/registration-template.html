@@ -16,10 +16,10 @@
 <table align="center" class="table">
     <tr>
         <td style="background-color: #ffffff; padding: 40px 30px 40px 30px; text-align: center">
-            <h3>Hello <span th:text="${firstName}" th:remove="tag"></span>!</h3>
-            <p>Welcome to (Fake) Apple Product online store.</p>
-            <p>To complete registration please follow the link: </p>
-            <a th:href="@{${url} + ${activationCode}}">confirm registration</a>
+            <h3>你好，<span th:text="${firstName}" th:remove="tag"></span>！</h3>
+            <p>欢迎来到（假的）Apple 产品在线商店。</p>
+            <p>要完成注册，请点击以下链接：</p>
+            <a th:href="@{${url} + ${activationCode}}">确认注册</a>
         </td>
     </tr>
 </table>
