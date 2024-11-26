@@ -1,7 +1,7 @@
-create sequence product_id_seq start 109 increment 1;
+create sequence product_id_seq start 29 increment 1;
 create sequence users_id_seq start 4 increment 1;
-create sequence order_item_seq start 12 increment 1;
-create sequence orders_seq start 6 increment 1;
+create sequence order_item_seq start 1 increment 1;
+create sequence orders_seq start 1 increment 1;
 
 create table orders
 (

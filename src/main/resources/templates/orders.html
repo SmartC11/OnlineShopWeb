@@ -30,7 +30,7 @@
                     </form>
                     <div th:insert="~{fragments/common-fragments :: pagination}"></div>
                     <th:block th:if="${page.getContent().size() == 0}"
-                              th:insert="~{fragments/common-fragments :: empty-result(text='Orders not found')}"/>
+                              th:insert="~{fragments/common-fragments :: empty-result(text='没有找到订单')}"/>
                     <table th:unless="${page.getContent().size() == 0}" class="table mt-4 border text-center">
                         <thead class="table-active">
                         <tr>
@@ -58,7 +58,7 @@
                             <th:block sec:authorize="hasAuthority('USER')">
                                 <th>
                                     <a th:href="@{/order/{orderId} (orderId = ${order.getId()})}">
-                                        Show more
+                                        查看更多
                                     </a>
                                 </th>
                             </th:block>

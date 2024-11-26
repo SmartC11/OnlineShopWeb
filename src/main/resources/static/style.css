@@ -253,3 +253,30 @@ ul ul a{
 .manage_user_order_summary_price {
     color: green;
 }
+
+/* footer */
+.page-footer {
+    background-color: #343a40; /* 与导航栏一致的深色背景 */
+    color: white;
+}
+
+/* 默认状态：白色图标 */
+.page-footer .social-link i {
+    color: white;
+    transition: color 0.3s ease; /* 平滑过渡效果 */
+}
+
+/* 悬浮时：变蓝 */
+.page-footer .social-link:hover i {
+    transform: scale(1.5); /* 放大 50% */
+    color: #007bff; /* Bootstrap 的主要蓝色 */
+}
+
+#categoryCarousel {
+    margin-top: 20px;  /* 调整推荐品类和轮播图之间的间距 */
+}
+
+.carousel-indicators {
+    bottom: -20px;  /* 向下调整 indicator，使其不遮挡图片 */
+    z-index: 1;     /* 确保 indicator 在正确的层级 */
+}

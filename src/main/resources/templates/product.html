@@ -5,53 +5,60 @@
 <div th:insert="~{fragments/common-fragments :: scripts}"></div>
 <div th:replace="fragments/common-fragments :: navbar"></div>
 <div id="container" class="bg-light">
-    <div class="container pt-5 pb-5 bg-white shadow-sm">
+    <div class="container pt-5 pb-5 bg-white shadow-sm rounded-lg">
         <div class="row">
+            <!-- 左侧图片区域 -->
             <div class="col-md-5">
-                <img th:src="@{/img/{path} (path = ${product.getFilename()})}" class="rounded mx-auto w-100">
+                <img th:src="@{/img/{path} (path = ${product.getFilename()})}" class="rounded mx-auto w-100 shadow-lg">
             </div>
+            <!-- 右侧产品详情区域 -->
             <div class="col-md-7">
-                <h2 th:text="${product.getProductName()}"></h2>
+
+                <h2 th:text="${product.getProductName()}" class="text-dark font-weight-bold mb-4"></h2>
                 <p>产品编码: <span th:text="${product.getId()}"></span></p>
-                <p class="product-stock" style="color: #54C0A1">库存充足</p>
-                <div class="row ml-1">
-                    <h6 class="mr-5">
+
+                <!-- 使用 Flexbox 来让价格和库存充足上下对齐 -->
+                <div class="d-flex flex-column mb-4">
+                    <p class="product-stock mb-2" style="color: #54C0A1; font-weight: bold;">库存充足</p>
+                    <h6 class="text-danger mb-0">
                         ￥<span th:text="${product.getPrice()}"></span>.00
                     </h6>
+                </div>
+
+                <!-- 添加到购物车按钮 -->
+                <div class="row align-items-center mb-4">
                     <form action="/cart/add" method="post">
-                        <button type="submit" name="productId" class="btn btn-success mx-3"
+                        <button type="submit" name="productId" class="btn btn-success mx-3 px-4 py-2 rounded-pill shadow-sm"
                                 th:value="${product.getId()}">
                             <i class="fas fa-cart-plus mr-2 fa-lg"></i>
                             添加到购物车
                         </button>
                     </form>
                 </div>
+
                 <br>
-                <table class="table">
+                <!-- 产品详情表格 -->
+                <table class="table table-borderless">
                     <tbody>
                     <tr>
-                        <td>产品名:</td>
-                        <td th:text="${product.getProductName()}"></td>
+                        <td class="font-weight-bold" style="width: 30%;">品类:</td>
+                        <td th:text="${product.getCategory()}" class="text-muted" style="font-size: 1.1rem;"></td>
                     </tr>
                     <tr>
-                        <td>品类:</td>
-                        <td th:text="${product.getCategory()}"></td>
+                        <td class="font-weight-bold">介绍:</td>
+                        <td th:text="${product.getDescription()}" class="text-muted" style="font-size: 1.1rem; line-height: 1.6;"></td>
                     </tr>
                     <tr>
-                        <td>介绍:</td>
-                        <td th:text="${product.getDescription()}"></td>
+                        <td class="font-weight-bold">发布年份:</td>
+                        <td th:text="${product.getReleaseYear()}" class="text-muted" style="font-size: 1.1rem;"></td>
                     </tr>
                     <tr>
-                        <td>发布年份:</td>
-                        <td th:text="${product.getReleaseYear()}"></td>
+                        <td class="font-weight-bold">库存:</td>
+                        <td th:text="${product.getStock()}" class="text-muted" style="font-size: 1.1rem;"></td>
                     </tr>
                     <tr>
-                        <td>库存:</td>
-                        <td th:text="${product.getStock()}"></td>
-                    </tr>
-                    <tr>
-                        <td>规格参数:</td>
-                        <td th:text="${product.getSpecifications()}"></td>
+                        <td class="font-weight-bold">规格参数:</td>
+                        <td th:text="${product.getSpecifications()}" class="text-muted" style="font-size: 1.1rem;"></td>
                     </tr>
                     </tbody>
                 </table>
@@ -59,6 +66,8 @@
         </div>
     </div>
 </div>
+
+<!-- 页脚部分 -->
 <footer th:insert="~{fragments/common-fragments :: footer}"></footer>
 </body>
 </html>

@@ -16,24 +16,26 @@
           <li class="active mb-2" id="homeSubmenu">
             <ul class="list-unstyled">
               <li th:insert="fragments/products-fragments :: products-type-checkbox('Mac')"></li>
+              <li th:insert="fragments/products-fragments :: products-type-checkbox('iPhone')"></li>
+              <li th:insert="fragments/products-fragments :: products-type-checkbox('iPad')"></li>
+              <li th:insert="fragments/products-fragments :: products-type-checkbox('Apple Watch')"></li>
+              <li th:insert="fragments/products-fragments :: products-type-checkbox('AirPods')"></li>
+              <li th:insert="fragments/products-fragments :: products-type-checkbox('Apple Vision Pro')"></li>
+              <li th:insert="fragments/products-fragments :: products-type-checkbox('AirTag')"></li>
+              <li th:insert="fragments/products-fragments :: products-type-checkbox('HomePod')"></li>
+              <li th:insert="fragments/products-fragments :: products-type-checkbox('Accessories')"></li>
             </ul>
           </li>
-<!--          <h5>Gender</h5>-->
-<!--          <li class="active mb-2">-->
-<!--            <ul class="list-unstyled">-->
-<!--              <li th:insert="fragments/perfumes-fragments :: perfumes-gender-checkbox('female')"></li>-->
-<!--              <li th:insert="fragments/perfumes-fragments :: perfumes-gender-checkbox('male')"></li>-->
-<!--            </ul>-->
-<!--          </li>-->
-          <h5>Price</h5>
+          <h5>价格</h5>
           <li class="active mb-2">
             <ul class="list-unstyled">
-              <li th:insert="fragments/products-fragments :: products-price-checkbox(startingPrice=0, endingPrice=5000)"></li>
-              <li th:insert="fragments/products-fragments :: products-price-checkbox(startingPrice=5000, endingPrice=10000)"></li>
-              <li th:insert="fragments/products-fragments :: products-price-checkbox(startingPrice=10000, endingPrice=15000)"></li>
-              <li th:insert="fragments/products-fragments :: products-price-checkbox(startingPrice=15000, endingPrice=20000)"></li>
-              <li th:insert="fragments/products-fragments :: products-price-checkbox(startingPrice=20000, endingPrice=25000)"></li>
-              <li th:insert="fragments/products-fragments :: products-price-checkbox(startingPrice=25000, endingPrice=30000)"></li>
+              <li th:insert="fragments/products-fragments :: products-price-checkbox(startingPrice=0)"></li>
+              <li th:insert="fragments/products-fragments :: products-price-checkbox(startingPrice=1, endingPrice=5000)"></li>
+              <li th:insert="fragments/products-fragments :: products-price-checkbox(startingPrice=5001, endingPrice=10000)"></li>
+              <li th:insert="fragments/products-fragments :: products-price-checkbox(startingPrice=10001, endingPrice=15000)"></li>
+              <li th:insert="fragments/products-fragments :: products-price-checkbox(startingPrice=15001, endingPrice=20000)"></li>
+              <li th:insert="fragments/products-fragments :: products-price-checkbox(startingPrice=20001, endingPrice=25000)"></li>
+              <li th:insert="fragments/products-fragments :: products-price-checkbox(startingPrice=25001, endingPrice=30000)"></li>
             </ul>
           </li>
         </ul>

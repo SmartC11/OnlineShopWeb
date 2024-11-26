@@ -42,21 +42,12 @@
     </label>
 </div>
 
-<!--&lt;!&ndash; 发布年份筛选 &ndash;&gt;-->
-<!--<div th:fragment="products-release-year-checkbox(year)" class="checkbox">-->
-<!--    <label>-->
-<!--        <input th:value="${year}" type="checkbox" name="releaseYear" onChange="this.form.submit()"-->
-<!--               th:checked="${searchRequest.getReleaseYear() != null ? #arrays.contains(searchRequest.getReleaseYear(), year) : false}"/>-->
-<!--        <span class="cr"><i class="cr-icon fas fa-check"></i></span>-->
-<!--        <th:block th:text="${year}"></th:block>-->
-<!--    </label>-->
-<!--</div>-->
-
+<!-- 价格筛选 -->
 <div th:fragment="products-price-checkbox" class="checkbox">
     <label>
         <input th:value="${startingPrice}" type="radio" name="price" onChange="this.form.submit()"
                th:checked="${searchRequest.getPrice() != null ? startingPrice == searchRequest.getPrice() : false}"/>
         <span class="cr"><i class="cr-icon fas fa-check"></i></span>
-        <th:block th:text="${startingPrice == 0} ? 'any' : ${startingPrice} + ' - ' + ${endingPrice} + ' ￥'"></th:block>
+        <th:block th:text="${startingPrice == 0} ? '任何价格' : ${startingPrice} + ' - ' + ${endingPrice} + ' ￥'"></th:block>
     </label>
 </div>

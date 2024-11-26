@@ -26,64 +26,87 @@
             crossorigin="anonymous"></script>
 </div>
 
-<!--Navbar-->
+<!-- Navbar -->
 <div th:fragment="navbar" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
-    <!-- 声明文字 -->
-    <div class="container-fluid bg-light text-dark py-2">
-        <p class="text-center small m-0">
-            本网站为课程学习项目的一部分，仅用于教育目的，非商业用途。网站上的所有内容均由个人自制，未与任何品牌、公司或组织建立任何官方关联。<br/>
-            网站上涉及的所有商标、品牌名称、产品图片和相关描述均属于其各自所有者的知识产权，包括但不限于 Apple Inc. 的产品名称和图片。Apple Inc. 保留其所有商标和产品的合法权利。
-        </p>
+    <!-- 宣传文字 -->
+    <div class="container-fluid bg-light text-dark py-4">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8">
+                <p class="text-center mb-0 fs-6" style="line-height: 1.8;">
+                    <span class="fw-semibold">本网站为课程学习项目的一部分，仅用于教育目的，非商业用途。</span><br />
+                    网站上的所有内容均由个人自制，未与任何品牌、公司或组织建立任何官方关联。
+                    <br /><br />
+                    涉及的所有商标、品牌名称、产品图片和相关描述均属于其各自所有者的知识产权，包括但不限于
+                    <strong><a href="https://www.apple.com/" target="_blank">Apple Inc.</a></strong> 的产品名称和图片。<br />
+                    <span class="fw-bold text-primary"><a href="https://www.apple.com/" target="_blank" class="text-primary text-decoration-none">Apple Inc.</a></span> 保留其所有商标和产品的合法权利。
+                </p>
+            </div>
+        </div>
     </div>
+
     <!-- 导航栏 -->
     <div class="container-fluid bg-dark">
-        <nav id="navbar-main" class="container navbar navbar-expand-lg bg-dark text-white navbar-main">
+        <nav id="navbar-main" class="container navbar navbar-expand-lg navbar-dark">
+            <!-- Toggle button for small screens -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- 主导航链接 -->
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link pl-5 pr-5 text-white" href="/">首页</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link pl-5 pr-5 text-white" href="/product">产品</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link pl-5 pr-5 text-white" href="/user/contacts">联系</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="/cart">
-                            <i class="fas fa-shopping-cart fa-lg pl-5"></i>
+                        <a class="nav-link" href="/">
+                            <i class="fas fa-home mr-2"></i>首页
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/product">
+                            <i class="fas fa-cogs mr-2"></i>产品
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/user/contacts">
+                            <i class="fas fa-envelope mr-2"></i>联系
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- 右侧导航链接 -->
+                <ul class="navbar-nav ml-auto">
+                    <!-- 购物车 -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="/cart">
+                            <i class="fas fa-shopping-cart mr-2"></i>购物车
+                        </a>
+                    </li>
+
+                    <!-- 登录/登出 -->
                     <th:block sec:authorize="isAuthenticated()">
                         <li class="nav-item">
-                            <a class="nav-link pl-5 text-white" href="/user/account">
-                                <i class="fas fa-user mr-2"></i>
-                                我的账号
+                            <a class="nav-link" href="/user/account">
+                                <i class="fas fa-user mr-2"></i> 我的账号
                             </a>
                         </li>
                         <form id="logout" action="/logout" method="post">
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="#" onclick="document.getElementById('logout').submit()">
-                                    <input type="hidden"/>
-                                    <i class="fas fa-sign-out-alt mr-2"></i>
-                                    登出
+                                <a class="nav-link" href="#" onclick="document.getElementById('logout').submit()">
+                                    <i class="fas fa-sign-out-alt mr-2"></i> 登出
                                 </a>
                             </li>
                         </form>
                     </th:block>
+
+                    <!-- 未登录 -->
                     <th:block sec:authorize="!isAuthenticated()">
                         <li class="nav-item">
-                            <a class="nav-link pl-5 text-white" href="/login">
-                                <i class="fas fa-sign-in-alt mr-2"></i>
-                                登录
+                            <a class="nav-link" href="/login">
+                                <i class="fas fa-sign-in-alt mr-2"></i> 登录
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link pl-5 text-white" href="/registration">
-                                <i class="fas fa-user-plus mr-2"></i>
-                                注册
+                            <a class="nav-link" href="/registration">
+                                <i class="fas fa-user-plus mr-2"></i> 注册
                             </a>
                         </li>
                     </th:block>
@@ -174,32 +197,50 @@
     </div>
 </th:block>
 
-<!-- footer -->
-<footer th:fragment="footer" class="page-footer p-5 bg-black text-white">
-    <div class="container">
+<!--footer-->
+<footer th:fragment="footer" class="page-footer bg-dark text-white">
+    <div class="container py-5">
         <!-- 左右分区 -->
-        <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="row">
             <!-- 左侧部分 -->
-            <div class="footer-left">
-                <h3 class="mb-3">程子健</h3>
-                <p class="mb-0">(86) 135-9050-0263</p>
+            <div class="col-md-6">
+                <h3 class="mb-3">程子健 (Smart Cheng)</h3>
+                <div style="display: flex; flex-direction: column;">
+                    <p class="mb-0" style="display: flex;">
+                        <span style="min-width: 50px;">电话:</span>
+                        <span>(+86) 135-9050-0263</span>
+                    </p>
+                    <p class="mb-0" style="display: flex;">
+                        <span style="min-width: 50px;">邮箱:</span>
+                        <span>1939366545@qq.com</span>
+                    </p>
+                    <p class="mb-0" style="display: flex;">
+                        <span style="min-width: 50px; visibility: hidden;">邮箱:</span>
+                        <span>chengzijian68@gmail.com</span>
+                    </p>
+                </div>
             </div>
-            <!-- 右侧部分 -->
-            <div class="footer-right text-center">
+
+            <!-- 中间部分 -->
+            <div class="col-md-6 text-center">
                 <h3 class="mb-3">社交媒体</h3>
-                <a href="https://github.com/SmartC11" class="text-decoration-none" title="GitHub">
-                    <i class="fab fa-github fa-2x mx-2" style="color: white;"></i>
+                <!-- GitHub -->
+                <a href="https://github.com/SmartC11" class="social-link" title="GitHub">
+                    <i class="fab fa-github fa-2x mx-2"></i>
                 </a>
-                <a href="#" class="text-decoration-none" title="Facebook">
-                    <i class="fab fa-facebook-f fa-2x mx-2" style="color: white;"></i>
+                <!-- QQ -->
+                <a href="https://qm.qq.com/q/rEuQAdbYWe" class="social-link" title="QQ">
+                    <i class="fab fa-qq fa-2x mx-2"></i>
                 </a>
-                <a href="#" class="text-decoration-none" title="Twitter">
-                    <i class="fab fa-twitter fa-2x mx-2" style="color: white;"></i>
+                <!-- 微信 -->
+                <a href="https://ibb.co/5KJ2m62" class="social-link" title="微信">
+                    <i class="fab fa-weixin fa-2x mx-2"></i>
                 </a>
             </div>
         </div>
+
         <!-- 底部版权信息 -->
-        <div class="text-center">
+        <div class="text-center mt-4">
             <p class="mb-0">© 2024 Copy right SmartCheng</p>
         </div>
     </div>
